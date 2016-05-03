@@ -7,7 +7,7 @@ from slackbot import calendar
 
 
 QUICK_ADD_FORMAT_CLOSE = "Fermeture %s %s 7pm"
-QUICK_ADD_FORNAT_OPEN  = "Ouverture %s %s 8am"
+QUICK_ADD_FORMAT_OPEN  = "Ouverture %s %s 8am"
 
 class Locking(db.Model):
     id       =           db.Column(db.Integer, primary_key=True)
@@ -66,6 +66,7 @@ class Locking(db.Model):
         try:
             eventid = calendar.add((QUICK_ADD_FORMAT_CLOSE if what == "close" else QUICK_ADD_FORMAT_OPEN) % (fullname, realdate.strftime("%m/%d/%y")))
         except:
+	    print("roll back")
             db.session.rollback()
             return False
 

@@ -63,8 +63,9 @@ def lockingSet(what, dayid):
     ret = Locking.Create(dayid, slackuser, what, fullname)
 
     if not ret:
+	print("fail")
         return 'fail'
-
+    print("ok")
     return 'ok'
 
 
